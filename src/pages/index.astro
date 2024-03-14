@@ -1,11 +1,12 @@
 ---
+import "~/styles/main.css";
+
 import Introduction from "~/components/introduction.astro";
-import Projects from "~/components/projects.astro";
-import Skills from "~/components/skills.astro";
-import Socials from "~/components/socials.astro";
+import ProjectsSection from "~/components/projects-section.astro";
+import SkillsSection from "~/components/skills-section.astro";
+import SocialsSection from "~/components/socials-section.astro";
 import SpotifyCurrentlyPlaying from "~/components/spotify-currently-playing";
 import Layout from "~/layouts/Layout.astro";
-import "~/styles/main.css";
 ---
 
 <Layout>
@@ -16,9 +17,9 @@ import "~/styles/main.css";
       class="mx-auto z-10 my-auto flex w-full flex-col justify-center gap-y-5 p-4 align-middle"
     >
       <Introduction />
-      <Socials />
-      <Projects />
-      <Skills />
+      <SocialsSection />
+      <ProjectsSection />
+      <SkillsSection />
       <SpotifyCurrentlyPlaying client:load />
     </div>
     <div class="absolute z-0 rounded-md inset-0 overflow-hidden dark">

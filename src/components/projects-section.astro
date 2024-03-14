@@ -1,25 +1,7 @@
 ---
+import { db, Projects } from "astro:db";
 import RayLinkButton from "./rays-link-button.astro";
-
-interface Project {
-  label: string;
-  url: string;
-}
-
-const projects: Project[] = [
-  {
-    label: "Watchlist",
-    url: "https://watchlist.abraham.lat",
-  },
-  {
-    label: "Bagel Clicker",
-    url: "https://bagel.abraham.lat",
-  },
-  {
-    label: "Image Color Picker",
-    url: "https://color.abraham.lat",
-  },
-];
+const projects = await db.select().from(Projects).all();
 ---
 
 <section class="flex flex-col items-center justify-center align-middle">
@@ -31,8 +13,8 @@ const projects: Project[] = [
       class="flex w-full flex-wrap justify-center gap-2 py-4 scrollbar-thin scrollbar-track-white/20 scrollbar-thumb-white/60 scrollbar-track-rounded-md scrollbar-thumb-rounded-md"
     >
       {
-        projects.map(({ label, url }) => (
-          <RayLinkButton label={label} url={url} />
+        projects.map(({ name, url }) => (
+          <RayLinkButton label={name} url={url} />
         ))
       }
     </article>

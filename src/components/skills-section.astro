@@ -1,22 +1,7 @@
 ---
-const stack = [
-  "Next.js",
-  "Astro",
-  "TypeScript",
-  "TailwindCSS",
-  "Vercel",
-  "AWS",
-  "Prisma",
-  "Drizzle ORM",
-  "Neon",
-  "Supabase",
-  "Turso",
-  "tRPC",
-  "React Query",
-  "PHP",
-  "Playwright",
-  "Expo",
-];
+import { db, Skills } from "astro:db";
+
+const skills = await db.select().from(Skills).all();
 ---
 
 <section class="flex flex-col items-center justify-center align-middle">
@@ -27,9 +12,9 @@ const stack = [
     class="mx-auto w-full flex flex-wrap items-center align-middle gap-2 justify-center rounded-md md:w-1/2"
   >
     {
-      stack.map((skill) => (
+      skills.map(({ name }) => (
         <span class="rounded-lg w-max border border-white/10 bg-white/10 text-white px-2 backdrop-blur-sm">
-          {skill}
+          {name}
         </span>
       ))
     }
