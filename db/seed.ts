@@ -26,6 +26,10 @@ export default async function seed() {
       url: "https://watchlist.abraham.lat",
     },
     {
+      name: "Coffee Tracker",
+      url: "https://coffee.abraham.lat",
+    },
+    {
       name: "Bagel Clicker",
       url: "https://bagel.abraham.lat",
     },

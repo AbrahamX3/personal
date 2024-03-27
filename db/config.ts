@@ -19,6 +19,21 @@ const Projects = defineTable({
   },
 });
 
+const Views = defineTable({
+  columns: {
+    id: column.number({
+      primaryKey: true,
+    }),
+    count: column.number({
+      default: 1,
+    }),
+    lastViewed: column.date({
+      default: new Date(),
+      optional: true,
+    }),
+  },
+});
+
 export default defineDb({
-  tables: { Skills, Projects },
+  tables: { Skills, Views, Projects },
 });

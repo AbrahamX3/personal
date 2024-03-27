@@ -6,6 +6,7 @@ import ProjectsSection from "~/components/projects-section.astro";
 import SkillsSection from "~/components/skills-section.astro";
 import SocialsSection from "~/components/socials-section.astro";
 import SpotifyCurrentlyPlaying from "~/components/spotify-currently-playing";
+import ViewCounter from "~/components/view-counter.astro";
 import Layout from "~/layouts/Layout.astro";
 ---
 
@@ -21,6 +22,7 @@ import Layout from "~/layouts/Layout.astro";
       <ProjectsSection />
       <SkillsSection />
       <SpotifyCurrentlyPlaying client:load />
+      <ViewCounter />
     </div>
     <div class="absolute z-0 rounded-md inset-0 overflow-hidden dark">
       <div
