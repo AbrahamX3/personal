@@ -11,7 +11,7 @@ async function incrementCounter() {
     const updatedCount = currentCount[0].count + 1;
     await db
       .update(Views)
-      .set({ count: updatedCount })
+      .set({ count: updatedCount, lastViewed: new Date() })
       .where(eq(Views.id, 1))
       .execute();
     return updatedCount;
