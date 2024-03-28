@@ -18,11 +18,11 @@ async function incrementCounter() {
   }
 }
 
-const totalViews = await incrementCounter();
+const totalViews = (await incrementCounter()) ?? 0;
 ---
 
 <p
-  class="text-sm flex gap-2 text-white leading-tight tracking-tighter items-center justify-center align-middle"
+  class="text-sm flex gap-1 text-white/30 leading-tight tracking-tighter items-center justify-center align-middle"
 >
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -37,5 +37,7 @@ const totalViews = await incrementCounter();
     <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
     <circle cx="12" cy="12" r="3"></circle>
   </svg>
-  <span>{totalViews} views</span>
+  <span class="tabular-nums"
+    >{Intl.NumberFormat("en-US").format(totalViews)} views</span
+  >
 </p>
