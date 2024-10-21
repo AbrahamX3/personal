@@ -38,6 +38,11 @@ import "@fontsource/geist-sans";
     <meta name="twitter:image" content="/icon.webp" />
     <link rel="icon" type="image/webp" href="/icon.webp" />
     <title>Abraham | Full-Stack Developer</title>
+    <script
+      is:inline
+      defer
+      src={import.meta.env.UMAMI_SCRIPT_URL}
+      data-website-id={import.meta.env.UMAMI_WEBSITE_ID}></script>
   </head>
   <body class="font-sans selection:bg-white/40 selection:text-black/50">
     <slot />
