@@ -1,0 +1,28 @@
+---
+const { views } = (await fetch(
+  `${Astro.url.origin}/api/pageviews?timezone=${Intl.DateTimeFormat().resolvedOptions().timeZone}`
+).then((res) => res.json())) as {
+  views: number;
+};
+---
+
+<p
+  class="text-sm flex gap-1 text-white/30 leading-tight tracking-tighter items-center justify-center align-middle"
+>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    class="size-4"
+    viewBox="0 0 24 24"
+  >
+    <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
+    <circle cx="12" cy="12" r="3"></circle>
+  </svg>
+  <span class="tabular-nums"
+    >{Intl.NumberFormat("en-US").format(views)} views</span
+  >
+</p>

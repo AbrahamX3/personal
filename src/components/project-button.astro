@@ -1,0 +1,26 @@
+---
+interface Props {
+  name: string;
+  url: string;
+  isPrivate?: boolean;
+}
+
+const { name, url, isPrivate = false } = Astro.props;
+---
+
+<a
+  target="_blank"
+  rel="noopener noreferrer"
+  href={url}
+  data-tooltip-target="tooltip-default"
+  class="rounded-lg has-tooltip w-max border justify-center flex items-center align-middle gap-2 transition-colors duration-150 ease-in-out hover:bg-white/20 border-white/10 bg-white/10 text-white px-3 py-1.5 backdrop-blur-sm"
+>
+  <slot />
+  <p class="z-10">{name}</p>
+
+  <div
+    class="tooltip shadow-lg p-1 w-max border text-center backdrop-blur-sm border-white/30 bg-neutral-700/90 rounded-lg -mt-20"
+  >
+    {isPrivate ? "Private Project" : "Public Project"}
+  </div>
+</a>

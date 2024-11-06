@@ -3,15 +3,15 @@
 /// <reference types="astro/client" />
 
 interface ImportMetaEnv {
-    readonly ASTRO_DB_REMOTE_URL: string;
-    readonly ASTRO_DB_APP_TOKEN: string;
-
-    readonly PUBLIC_DISCORD_USER_ID: string;
-
-    readonly UMAMI_SCRIPT_URL: string;
-    readonly UMAMI_WEBSITE_ID: string;
+  readonly PUBLIC_DISCORD_USER_ID: string;
+  readonly UMAMI_SCRIPT_URL: string;
+  readonly UMAMI_WEBSITE_ID: string;
+  readonly UMAMI_API_KEY: string;
+  readonly UMAMI_API_CLIENT_ENDPOINT: string;
+  readonly UMAMI_API_CLIENT_USER_ID: string;
+  readonly UMAMI_API_CLIENT_SECRET: string;
 }
 
 interface ImportMeta {
-    readonly env: ImportMetaEnv;
+  readonly env: ImportMetaEnv;
 }

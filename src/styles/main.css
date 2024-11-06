@@ -61,3 +61,11 @@
 .dark .rays::after {
   background-image: var(--stripesDark), var(--rainbow);
 }
+
+.tooltip {
+  @apply invisible absolute;
+}
+
+.has-tooltip:hover .tooltip {
+  @apply visible z-50;
+}

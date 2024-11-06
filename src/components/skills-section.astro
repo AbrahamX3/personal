@@ -1,8 +1,131 @@
 ---
-import { db, Skills } from "astro:db";
+type Stack = {
+  name: string;
+  url: string;
+};
 
-const skills = await db.select().from(Skills).all();
-//test
+const stack: Stack[] = [
+  {
+    name: "Next.js",
+    url: "https://nextjs.org/",
+  },
+  {
+    name: "Astro",
+    url: "https://astro.build/",
+  },
+  {
+    name: "TypeScript",
+    url: "https://www.typescriptlang.org/",
+  },
+  {
+    name: "TailwindCSS",
+    url: "https://tailwindcss.com/",
+  },
+  {
+    name: "Vercel",
+    url: "https://vercel.com/",
+  },
+  {
+    name: "AWS",
+    url: "https://aws.amazon.com/",
+  },
+  {
+    name: "Prisma",
+    url: "https://prisma.io/",
+  },
+  {
+    name: "Drizzle ORM",
+    url: "https://orm.drizzle.team/",
+  },
+  {
+    name: "Supabase",
+    url: "https://supabase.com/",
+  },
+  {
+    name: "Turso",
+    url: "https://turso.tech/",
+  },
+  {
+    name: "tRPC",
+    url: "https://trpc.io/",
+  },
+  {
+    name: "React Query",
+    url: "https://tanstack.com/query/latest",
+  },
+  {
+    name: "PHP",
+    url: "https://www.php.net/",
+  },
+  {
+    name: "Playwright",
+    url: "https://playwright.dev/",
+  },
+  {
+    name: "Expo",
+    url: "https://expo.dev/",
+  },
+  {
+    name: "C#",
+    url: "https://learn.microsoft.com/en-us/dotnet/csharp/",
+  },
+  {
+    name: "JavaScript",
+    url: "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
+  },
+  {
+    name: "PostgreSQL",
+    url: "https://www.postgresql.org/",
+  },
+  {
+    name: "Cloudflare",
+    url: "https://www.cloudflare.com/",
+  },
+  {
+    name: "GitHub",
+    url: "https://github.com/",
+  },
+  {
+    name: "Git",
+    url: "https://git-scm.com/",
+  },
+  {
+    name: ".NET",
+    url: "https://dotnet.microsoft.com/",
+  },
+  {
+    name: "MySQL",
+    url: "https://www.mysql.com/",
+  },
+  {
+    name: "Sentry",
+    url: "https://sentry.io/",
+  },
+  {
+    name: "Axiom",
+    url: "https://axiom.co",
+  },
+  {
+    name: "Digital Ocean",
+    url: "https://www.digitalocean.com/",
+  },
+  {
+    name: "jQuery",
+    url: "https://jquery.com/",
+  },
+  {
+    name: "EdgeDB",
+    url: "https://edgedb.com/",
+  },
+  {
+    name: "Shadcn UI",
+    url: "https://ui.shadcn.com/",
+  },
+  {
+    name: "Umami",
+    url: "https://umami.is/",
+  },
+];
 ---
 
 <section class="flex flex-col items-center justify-center align-middle">
@@ -13,10 +136,14 @@ const skills = await db.select().from(Skills).all();
     class="mx-auto w-full flex flex-wrap items-center align-middle gap-2 justify-center rounded-md md:w-1/2"
   >
     {
-      skills.map(({ name }) => (
-        <span class="rounded-lg w-max border border-white/10 bg-white/10 text-white px-2 backdrop-blur-sm">
+      stack.map(({ name, url }) => (
+        <a
+          href={url}
+          target="_blank"
+          class="rounded-lg w-max border text-sm transition-colors duration-150 ease-in-out hover:bg-white/20 border-white/10 bg-white/10 text-white px-3 py-0.5 backdrop-blur-sm"
+        >
           {name}
-        </span>
+        </a>
       ))
     }
   </div>
