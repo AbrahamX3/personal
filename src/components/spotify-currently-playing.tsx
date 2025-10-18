@@ -1,9 +1,6 @@
-import {
-  useLanyard,
-  type Spotify as SpotifyCurrentlyPlaying,
-} from "use-lanyard";
+import { type Types, useLanyard } from "use-lanyard";
 
-const DISCORD_USERID = "247971007409684480";
+const DISCORD_USERID = import.meta.env.PUBLIC_DISCORD_USER_ID as `${bigint}`;
 
 function LoadingSpotifyTrack() {
   return (
@@ -20,14 +17,10 @@ function LoadingSpotifyTrack() {
   );
 }
 
-function SpotifyTrack({
-  spotify,
-}: {
-  spotify: SpotifyCurrentlyPlaying | undefined;
-}) {
+function SpotifyTrack({ spotify }: { spotify: Types.Spotify | undefined }) {
   return (
     <div className="grid h-20 relative grid-cols-8 place-content-center place-items-center gap-4 place-self-center rounded-lg border border-white/10 bg-white/10 p-2 text-center shadow-md backdrop-blur-sm">
-      <div className="flex flex-col z-10 place-self-start align-middle">
+      <div className="flex flex-col z-10 size-16 place-self-start align-middle">
         {spotify?.album_art_url ? (
           <img
             src={spotify.album_art_url}
@@ -35,7 +28,7 @@ function SpotifyTrack({
             title={spotify.song}
             width={150}
             height={150}
-            className="aspect-square h-full w-full rounded-lg object-contain xs:h-16 xs:w-16"
+            className="aspect-square h-full w-full rounded-lg object-contain xs:size-16"
           />
         ) : (
           <div className="aspect-square flex justify-center items-center h-20 w-20 border border-white/10 backdrop-blur-sm bg-white/10 rounded-lg object-contain xs:h-16 xs:w-16">
@@ -65,8 +58,8 @@ function SpotifyTrack({
         >
           <span>{spotify?.song}</span>
         </a>
-        <p className="text-sm truncate font-bold" title={spotify?.artist}>
-          {spotify?.artist}
+        <p className="text-sm truncate font-bold" title={spotify?.artist ?? ""}>
+          {spotify?.artist ?? ""}
         </p>
       </div>
       <div className="ml-auto flex z-10 flex-col place-self-center align-middle">

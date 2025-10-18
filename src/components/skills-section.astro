@@ -26,6 +26,10 @@ const stack: Stack[] = [
     url: "https://vercel.com/",
   },
   {
+    name: "Railway",
+    url: "https://railway.app/",
+  },
+  {
     name: "AWS",
     url: "https://aws.amazon.com/",
   },
@@ -114,8 +118,8 @@ const stack: Stack[] = [
     url: "https://jquery.com/",
   },
   {
-    name: "EdgeDB",
-    url: "https://edgedb.com/",
+    name: "Convex",
+    url: "https://www.convex.dev/",
   },
   {
     name: "Shadcn UI",
@@ -125,18 +129,44 @@ const stack: Stack[] = [
     name: "Umami",
     url: "https://umami.is/",
   },
+  {
+    name: "oRPC",
+    url: "https://orpc.unnoq.com/",
+  },
+  {
+    name: "Zod",
+    url: "https://zod.dev/",
+  },
+  {
+    name: "Zustand",
+    url: "https://zustand-demo.pmnd.rs/",
+  },
+  {
+    name: "Hono",
+    url: "https://hono.dev/",
+  },
+  {
+    name: "AI SDK",
+    url: "https://sdk.vercel.ai/",
+  },
+  {
+    name: "Better Auth",
+    url: "https://better-auth.com/",
+  }
 ];
 ---
 
 <section class="flex flex-col items-center justify-center align-middle">
   <h3 class="text-lg font-bold text-white md:text-xl pb-4">
-    Current Tech Stack
+    Stuff I Use
   </h3>
   <div
     class="mx-auto w-full flex flex-wrap items-center align-middle gap-2 justify-center rounded-md md:w-1/2"
   >
     {
-      stack.map(({ name, url }) => (
+      [...stack]
+        .sort(() => Math.random() - 0.5)
+        .map(({ name, url }) => (
         <a
           href={url}
           target="_blank"
