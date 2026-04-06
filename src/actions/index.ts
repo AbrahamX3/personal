@@ -18,15 +18,12 @@ export const server = {
         const startAt = new Date(`${currentYear}-01-01T00:00:00`).getTime();
         const endAt = new Date(`${currentYear}-12-31T23:59:59`).getTime();
 
-        const { data } = await client.getWebsitePageviews(
-          import.meta.env.UMAMI_WEBSITE_ID,
-          {
-            startAt,
-            endAt,
-            unit: "year",
-            timezone,
-          }
-        );
+        const { data } = await client.getWebsitePageviews(import.meta.env.UMAMI_WEBSITE_ID, {
+          startAt,
+          endAt,
+          unit: "year",
+          timezone,
+        });
 
         const views = data?.pageviews[0].y ?? 0;
 

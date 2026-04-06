@@ -12,10 +12,14 @@
 
 @keyframes rays {
   from {
-    background-position: 50% 50%, 50% 50%;
+    background-position:
+      50% 50%,
+      50% 50%;
   }
   to {
-    background-position: 350% 50%, 350% 50%;
+    background-position:
+      350% 50%,
+      350% 50%;
   }
 }
 
@@ -46,7 +50,9 @@
   );
   background-image: var(--stripes), var(--rainbow);
   background-size: 300%, 200%;
-  background-position: 50% 50%, 50% 50%;
+  background-position:
+    50% 50%,
+    50% 50%;
   filter: blur(12px) invert(100%) grayscale(80%);
   mask-image: radial-gradient(ellipse at 100% 0%, black 35%, transparent 72%);
   pointer-events: none;
