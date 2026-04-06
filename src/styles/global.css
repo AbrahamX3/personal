@@ -8,7 +8,7 @@
   @apply visible z-50;
 }
 
-/* God Rays by Tim Wilson (https://codepen.io/TWilson/pen/jOdWqbZ), modified to fit page style. */
+/* God Rays by Tim Wilson (https://codepen.io/TWilson/pen/jOdWqbZ), toned down for a neutral page. */
 
 @keyframes rays {
   from {
@@ -38,17 +38,17 @@
   );
   --rainbow: repeating-linear-gradient(
     100deg,
-    #60a5fa 10%,
-    #e879f9 15%,
-    #60a5fa 20%,
-    #5eead4 25%,
-    #60a5fa 30%
+    #71717a 12%,
+    #52525b 18%,
+    #71717a 24%,
+    #3f3f46 30%,
+    #71717a 36%
   );
   background-image: var(--stripes), var(--rainbow);
   background-size: 300%, 200%;
   background-position: 50% 50%, 50% 50%;
-  filter: blur(10px) invert(100%);
-  mask-image: radial-gradient(ellipse at 100% 0%, black 40%, transparent 70%);
+  filter: blur(12px) invert(100%) grayscale(80%);
+  mask-image: radial-gradient(ellipse at 100% 0%, black 35%, transparent 72%);
   pointer-events: none;
 }
 
@@ -58,14 +58,14 @@
   inset: 0;
   background-image: var(--stripes), var(--rainbow);
   background-size: 200%, 100%;
-  animation: rays 70s linear infinite;
+  animation: rays 80s linear infinite;
   background-attachment: fixed;
   mix-blend-mode: difference;
 }
 
 .dark .rays {
   background-image: var(--stripesDark), var(--rainbow);
-  filter: blur(10px) opacity(50%) saturate(150%) grayscale(50%);
+  filter: blur(12px) opacity(35%) saturate(40%) grayscale(90%);
 }
 
 .dark .rays::after {

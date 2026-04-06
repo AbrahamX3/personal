@@ -1,3 +1,9 @@
+import type { ImageMetadata } from "astro";
+
+import logoHivio from "~/assets/projects/hivio.png";
+import logoTermify from "~/assets/projects/termify.png";
+import logoTess from "~/assets/projects/tess-track.png";
+
 type TechnologyInfo = {
   name: string;
   url: string;
@@ -62,15 +68,11 @@ export const Technology = {
 } as const satisfies Record<string, TechnologyInfo>;
 
 export type TechnologyEntry = (typeof Technology)[keyof typeof Technology];
-export type TechnologyId = keyof typeof Technology;
-export type TechnologyName = TechnologyEntry["name"];
-
-export const TECHNOLOGIES: TechnologyInfo[] = Object.values(Technology);
 
 export interface Project {
   name: string;
   description: string;
-  logo?: string;
+  logo?: ImageMetadata;
   private: boolean;
   url?: {
     repository?: string;
@@ -82,9 +84,10 @@ export interface Project {
 export const PROJECTS: Project[] = [
   {
     name: "Termify",
+    logo: logoTermify,
     private: false,
     description:
-      "A fast, local app for organizing projects and managing terminal processes—with real-time process usage monitoring and streamlined controls—all in one place.",
+      "A local only application to organize your projects and seamlessly manage terminal processes—all with live resource monitoring, intuitive controls, and a clutter-free experience designed for productivity.",
     url: {
       repository: "https://github.com/AbrahamX3/termify",
       website: "https://termify.abraham.lat",
@@ -93,7 +96,6 @@ export const PROJECTS: Project[] = [
       Technology.TAILWINDCSS,
       Technology.TYPESCRIPT,
       Technology.VITE,
-      Technology.REACTQUERY,
       Technology.DRIZZLEORM,
       Technology.SHADCNUI,
       Technology.ZOD,
@@ -106,9 +108,10 @@ export const PROJECTS: Project[] = [
   },
   {
     name: "Hivio",
+    logo: logoHivio,
     private: false,
     description:
-      "Minimal tracker for Movies & Series. Keep up with every episode you watch without the clutter. Log what you are watching, pick up where you left off, and see what is coming next, all in a calm dashboard.",
+      "A minimal movie and series tracker designed for simplicity. Easily log everything you watch, seamlessly continue where you left off, and stay updated on upcoming releases, all in a intuitive dashboard.",
     url: {
       repository: "https://github.com/AbrahamX3/hivio",
       website: "https://hivio.vercel.app",
@@ -122,12 +125,12 @@ export const PROJECTS: Project[] = [
       Technology.ZUSTAND,
       Technology.CONVEX,
       Technology.BETTERAUTH,
-      Technology.POSTGRESQL,
       Technology.VERCEL,
     ],
   },
   {
     name: "TESS.track",
+    logo: logoTess,
     private: true,
     description:
       "A comprehensive real-time GPS tracking solution featuring a mobile companion app and advanced digital forensic tools for analyzing Mexican cellular provider data and logs.",
@@ -142,6 +145,7 @@ export const PROJECTS: Project[] = [
       Technology.NEXTAUTH,
       Technology.SUPABASE,
       Technology.MAPBOX,
+      Technology.REACTQUERY,
       Technology.AXIOM,
       Technology.SENTRY,
       Technology.VERCEL,
@@ -154,3 +158,22 @@ export const PROJECTS: Project[] = [
     ],
   },
 ];
+
+export const ACTIVITIES = {
+  GAMES: {
+    description:
+      "Love playing Overwatch, RDR2 from time to time, used to play Minecraft heavily and other games like CS:GO, Far Cry Series, and more.",
+  },
+  MEDIA: {
+    description:
+      "I watch any type of movies and shows, sometimes binging up to 7 shows at a time, a reason why <a href='https://hivio.vercel.app' target='_blank' rel='noopener noreferrer'>Hivio</a> project was created.",
+  },
+  MUSIC: {
+    description:
+      "I listen to any type of music, Check out my <a href='https://www.last.fm/user/cmelvard' target='_blank' rel='noopener noreferrer'>Last.fm</a> and <a href='https://open.spotify.com/user/reaker911x' target='_blank' rel='noopener noreferrer'>Spotify</a>!",
+  },
+  COFFEE: {
+    description:
+      "I love the whole process of making coffee, from the brewing to the tasting, and everything in between. My current setup is an Aeropress, using a Timemore C3 ESP Pro grinder, love natural processed coffees.",
+  },
+} as const satisfies Record<string, { description: string }>;

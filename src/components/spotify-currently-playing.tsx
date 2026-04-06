@@ -2,45 +2,72 @@ import { type Types, useLanyard } from "use-lanyard";
 
 const DISCORD_USERID = import.meta.env.PUBLIC_DISCORD_USER_ID as `${bigint}`;
 
+const rowClass =
+  "flex h-12 max-w-sm items-center gap-3 rounded-md border border-zinc-800/90 bg-zinc-900/35 px-2.5 py-1.5";
+
+function SpotifyLogoLink() {
+  return (
+    <a
+      target="_blank"
+      rel="noopener noreferrer"
+      className="shrink-0 text-zinc-500 transition-colors hover:text-zinc-300"
+      href="https://open.spotify.com/user/reaker911x"
+      aria-label="Spotify profile"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        className="size-5"
+        viewBox="0 0 64 64"
+        aria-hidden={true}
+      >
+        <path
+          fill="currentColor"
+          d="M32 0C14.3 0 0 14.337 0 32c0 17.7 14.337 32 32 32 17.7 0 32-14.337 32-32S49.663 0 32 0zm14.68 46.184c-.573.956-1.797 1.223-2.753.65-7.532-4.588-16.975-5.62-28.14-3.097-1.07.23-2.14-.42-2.37-1.49s.42-2.14 1.49-2.37c12.196-2.79 22.67-1.606 31.082 3.556a2 2 0 0 1 .688 2.753zm3.9-8.717c-.726 1.185-2.256 1.53-3.44.84-8.602-5.276-21.716-6.805-31.885-3.747-1.338.382-2.714-.344-3.097-1.644-.382-1.338.344-2.714 1.682-3.097 11.622-3.517 26.074-1.835 35.976 4.244 1.147.688 1.49 2.217.765 3.403zm.344-9.1c-10.323-6.117-27.336-6.69-37.2-3.708-1.568.497-3.25-.42-3.747-1.988s.42-3.25 1.988-3.747c11.317-3.44 30.127-2.753 41.98 4.282 1.415.84 1.873 2.676 1.032 4.09-.765 1.453-2.638 1.912-4.053 1.07z"
+        />
+      </svg>
+    </a>
+  );
+}
+
 function LoadingSpotifyTrack() {
   return (
-    <div className="mx-auto relative w-full animate-pulse">
-      <div className="flex h-20 cursor-pointer flex-col items-center justify-center rounded-lg border border-white/10 bg-white/10 p-2 text-center align-middle shadow-md backdrop-blur-sm">
-        <span className="text-center z-10 text-lg font-semibold text-white">
-          Loading Spotify...
-        </span>
+    <div className={rowClass}>
+      <div className="size-9 shrink-0 animate-pulse rounded bg-zinc-800/80" />
+      <div className="min-w-0 flex-1 space-y-1.5">
+        <div className="h-2.5 w-3/4 animate-pulse rounded bg-zinc-800/80" />
+        <div className="h-2 w-1/2 animate-pulse rounded bg-zinc-800/60" />
       </div>
-      <div className="absolute z-0 inset-0 overflow-hidden dark">
-        <div className="rays absolute -inset-3 opacity-20" />
-      </div>
+      <SpotifyLogoLink />
     </div>
   );
 }
 
 function SpotifyTrack({ spotify }: { spotify: Types.Spotify | undefined }) {
   return (
-    <div className="grid h-20 relative grid-cols-8 place-content-center place-items-center gap-4 place-self-center rounded-lg border border-white/10 bg-white/10 p-2 text-center shadow-md backdrop-blur-sm">
-      <div className="flex flex-col z-10 size-16 place-self-start align-middle">
+    <div className={rowClass}>
+      <div className="size-9 shrink-0 overflow-hidden rounded bg-zinc-800">
         {spotify?.album_art_url ? (
           <img
             src={spotify.album_art_url}
-            alt={spotify.album ?? "Spotify Cover"}
-            title={spotify.song}
-            width={150}
-            height={150}
-            className="aspect-square h-full w-full rounded-lg object-contain xs:size-16"
+            alt=""
+            width={36}
+            height={36}
+            className="size-full object-cover"
+            loading="lazy"
+            decoding="async"
           />
         ) : (
-          <div className="aspect-square flex justify-center items-center h-20 w-20 border border-white/10 backdrop-blur-sm bg-white/10 rounded-lg object-contain xs:h-16 xs:w-16">
+          <div className="flex size-full items-center justify-center text-zinc-600">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
               strokeWidth="2"
-              className="stroke-white w-8 h-8 opacity-60"
+              className="size-4"
               strokeLinecap="round"
               strokeLinejoin="round"
+              aria-hidden={true}
             >
               <circle cx="12" cy="12" r="10" />
               <path d="m4.9 4.9 14.2 14.2" />
@@ -48,76 +75,32 @@ function SpotifyTrack({ spotify }: { spotify: Types.Spotify | undefined }) {
           </div>
         )}
       </div>
-      <div className="col-span-6 z-10 flex w-full flex-col gap-y-1 overflow-hidden align-middle text-white">
+      <div className="min-w-0 flex-1 text-left text-zinc-200">
         <a
           href={`https://open.spotify.com/track/${spotify?.track_id}`}
           target="_blank"
-          className="truncate font-bold cursor-pointer"
+          rel="noopener noreferrer"
+          className="block truncate text-xs font-medium hover:text-white"
           title={spotify?.song}
-          aria-label="Open Current Song on Spotify"
         >
-          <span>{spotify?.song}</span>
+          {spotify?.song}
         </a>
-        <p className="text-sm truncate font-bold" title={spotify?.artist ?? ""}>
+        <p className="truncate text-[11px] text-zinc-500" title={spotify?.artist ?? ""}>
           {spotify?.artist ?? ""}
         </p>
       </div>
-      <div className="ml-auto flex z-10 flex-col place-self-center align-middle">
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          className="z-10"
-          href="https://open.spotify.com/user/reaker911x"
-          aria-label="Spotify Profile"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="size-8 hover:opacity-80 transition-opacity duration-150 ease-in-out"
-            viewBox="0 0 64 64"
-            aria-label="Spotify Logo"
-          >
-            <path
-              fill="#ffffff"
-              d="M32 0C14.3 0 0 14.337 0 32c0 17.7 14.337 32 32 32 17.7 0 32-14.337 32-32S49.663 0 32 0zm14.68 46.184c-.573.956-1.797 1.223-2.753.65-7.532-4.588-16.975-5.62-28.14-3.097-1.07.23-2.14-.42-2.37-1.49s.42-2.14 1.49-2.37c12.196-2.79 22.67-1.606 31.082 3.556a2 2 0 0 1 .688 2.753zm3.9-8.717c-.726 1.185-2.256 1.53-3.44.84-8.602-5.276-21.716-6.805-31.885-3.747-1.338.382-2.714-.344-3.097-1.644-.382-1.338.344-2.714 1.682-3.097 11.622-3.517 26.074-1.835 35.976 4.244 1.147.688 1.49 2.217.765 3.403zm.344-9.1c-10.323-6.117-27.336-6.69-37.2-3.708-1.568.497-3.25-.42-3.747-1.988s.42-3.25 1.988-3.747c11.317-3.44 30.127-2.753 41.98 4.282 1.415.84 1.873 2.676 1.032 4.09-.765 1.453-2.638 1.912-4.053 1.07z"
-            />
-          </svg>
-        </a>
-      </div>
-      <div className="absolute z-0 inset-0 overflow-hidden dark">
-        <div className="rays absolute -inset-3 opacity-20" />
-      </div>
+      <SpotifyLogoLink />
     </div>
   );
 }
 
 function NoTrackPlaying() {
   return (
-    <div className="flex h-20 relative cursor-pointer flex-row items-center justify-between rounded-lg border-2 border-white/30 bg-white/10 p-4 text-center align-middle shadow-md backdrop-blur-md">
-      <div className="absolute inset-0 overflow-hidden dark">
-        <div className="rays absolute -inset-3 opacity-20" />
+    <div className={rowClass}>
+      <div className="flex min-w-0 flex-1 items-center">
+        <p className="truncate text-xs text-zinc-500">Not playing anything right now</p>
       </div>
-      <span className="text-center text-lg font-semibold text-white">
-        Currently not playing any track
-      </span>
-      <a
-        target="_blank"
-        rel="noopener noreferrer"
-        className="z-10"
-        href="https://open.spotify.com/user/reaker911x"
-        aria-label="Spotify Profile"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="size-8 hover:opacity-80 transition-opacity duration-150 ease-in-out"
-          viewBox="0 0 64 64"
-          aria-label="Spotify Logo"
-        >
-          <path
-            fill="#ffffff"
-            d="M32 0C14.3 0 0 14.337 0 32c0 17.7 14.337 32 32 32 17.7 0 32-14.337 32-32S49.663 0 32 0zm14.68 46.184c-.573.956-1.797 1.223-2.753.65-7.532-4.588-16.975-5.62-28.14-3.097-1.07.23-2.14-.42-2.37-1.49s.42-2.14 1.49-2.37c12.196-2.79 22.67-1.606 31.082 3.556a2 2 0 0 1 .688 2.753zm3.9-8.717c-.726 1.185-2.256 1.53-3.44.84-8.602-5.276-21.716-6.805-31.885-3.747-1.338.382-2.714-.344-3.097-1.644-.382-1.338.344-2.714 1.682-3.097 11.622-3.517 26.074-1.835 35.976 4.244 1.147.688 1.49 2.217.765 3.403zm.344-9.1c-10.323-6.117-27.336-6.69-37.2-3.708-1.568.497-3.25-.42-3.747-1.988s.42-3.25 1.988-3.747c11.317-3.44 30.127-2.753 41.98 4.282 1.415.84 1.873 2.676 1.032 4.09-.765 1.453-2.638 1.912-4.053 1.07z"
-          />
-        </svg>
-      </a>
+      <SpotifyLogoLink />
     </div>
   );
 }
@@ -127,7 +110,7 @@ export default function SpotifyCurrentlyPlaying() {
   const spotify = data?.spotify ?? undefined;
 
   return (
-    <section className="mx-auto w-full md:w-1/2 pt-4">
+    <section className="mx-auto w-full max-w-sm pt-2" aria-label="Spotify status">
       {state !== "loaded" ? (
         <LoadingSpotifyTrack />
       ) : data?.listening_to_spotify ? (

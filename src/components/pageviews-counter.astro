@@ -1,7 +1,7 @@
-<div id="pageviews-container">
+<div id="pageviews-container" class="text-[11px] tabular-nums text-zinc-600">
   <p
     id="loading-state"
-    class="text-sm flex gap-1 text-white/30 leading-tight tracking-tighter items-center justify-center align-middle"
+    class="flex items-center justify-end gap-1 leading-none"
   >
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,86 +10,55 @@
       stroke-width="2"
       stroke-linecap="round"
       stroke-linejoin="round"
-      class="size-4 animate-spin"
+      class="size-3 animate-spin opacity-60"
       viewBox="0 0 24 24"
+      aria-hidden="true"
     >
       <circle cx="12" cy="12" r="10" />
       <path d="M12 2a10 10 0 0 1 10 10" />
     </svg>
-    <span class="tabular-nums">Loading views...</span>
+    <span>…</span>
   </p>
 
-  <p
-    id="success-state"
-    class="text-sm gap-1 text-white/30 leading-tight tracking-tighter items-center justify-center align-middle hidden"
-  >
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      class="size-4"
-      viewBox="0 0 24 24"
-    >
-      <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
-      <circle cx="12" cy="12" r="3"></circle>
-    </svg>
-    <span class="tabular-nums" id="views-count">0 views</span>
+  <p id="success-state" class="hidden items-center justify-end gap-1 leading-none">
+    <span id="views-count" class="text-zinc-600">0</span>
   </p>
 
-  <p
-    id="error-state"
-    class="text-sm gap-1 text-white/30 leading-tight tracking-tighter items-center justify-center align-middle hidden"
-  >
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      class="size-4"
-      viewBox="0 0 24 24"
-    >
-      <circle cx="12" cy="12" r="10" />
-      <path d="M12 2a10 10 0 0 1 10 10" />
-    </svg>
-    <span class="tabular-nums">Error loading views</span>
+  <p id="error-state" class="hidden justify-end leading-none text-zinc-700">
+    <span>—</span>
   </p>
 </div>
 
 <script>
- import { actions } from 'astro:actions';
+  import { actions } from "astro:actions";
 
-  document.addEventListener('DOMContentLoaded', async () => {
-    const loadingState = document.getElementById('loading-state');
-    const successState = document.getElementById('success-state');
-    const errorState = document.getElementById('error-state');
-    const viewsCount = document.getElementById('views-count');
+  document.addEventListener("DOMContentLoaded", async () => {
+    const loadingState = document.getElementById("loading-state");
+    const successState = document.getElementById("success-state");
+    const errorState = document.getElementById("error-state");
+    const viewsCount = document.getElementById("views-count");
 
     if (!loadingState || !successState || !errorState || !viewsCount) {
       return;
     }
 
     try {
-      const {data, error} = await actions.getPageviews();
-      
-        if (data?.views && !error) {
-          viewsCount.textContent = `${Intl.NumberFormat("en-US").format(Number(data.views))} views`;
-        loadingState.classList.add('hidden');
-        successState.classList.remove('hidden');
-        successState.classList.add('flex');
+      const { data, error } = await actions.getPageviews();
+
+      if (data?.views && !error) {
+        viewsCount.textContent = `${Intl.NumberFormat("en-US").format(Number(data.views))} views`;
+        loadingState.classList.add("hidden");
+        successState.classList.remove("hidden");
+        successState.classList.add("flex");
       } else {
-        loadingState.classList.add('hidden');
-        errorState.classList.remove('hidden');
-        errorState.classList.add('flex');
+        loadingState.classList.add("hidden");
+        errorState.classList.remove("hidden");
+        errorState.classList.add("flex");
       }
-    } catch (error) {
-      loadingState.classList.add('hidden');
-      errorState.classList.remove('hidden');
-      errorState.classList.add('flex');
+    } catch {
+      loadingState.classList.add("hidden");
+      errorState.classList.remove("hidden");
+      errorState.classList.add("flex");
     }
   });
 </script>

@@ -1,10 +1,34 @@
-<section class="flex flex-col items-center gap-y-2 text-center align-middle">
-  <h1
-    class="font-cabinet-grotesk text-2xl font-bold text-white md:text-3xl lg:text-5xl"
-  >
-    Hey, I&apos;m Abraham!
-  </h1>
-  <h2 class="lg:text-md text-sm text-white md:text-lg">
-    Full-Stack Developer based in Baja California, Mexico
-  </h2>
+---
+import ActivityTerm from "~/components/activity-term.astro";
+import { ACTIVITIES } from "~/lib/constants";
+---
+
+<section
+  class="mx-auto flex w-full max-w-md flex-col items-center gap-y-3 text-center text-zinc-100"
+  aria-labelledby="intro-heading"
+>
+  <div class="flex flex-col items-center gap-y-1">
+    <h1
+      id="intro-heading"
+      class="font-sans text-xl font-semibold tracking-tight sm:text-2xl md:text-3xl"
+    >
+      Hey, I&apos;m Abraham
+    </h1>
+    <p class="text-sm text-zinc-300 sm:text-sm">
+      Full-Stack Developer, Based in Baja California, Mexico
+    </p>
+  </div>
+  <p class="text-pretty text-zinc-500 mt-4">
+    If It&apos;s anything Web related, I&apos;m on it:
+    <span class="text-zinc-200">Websites and Apps, APIs, Servers, Desktop and Mobile</span>.
+    Experienced in <span class="text-zinc-200">Education, Business, and Government</span> sectors. After work,
+    <ActivityTerm label="Coffee" descriptionHtml={ACTIVITIES.COFFEE.description} />
+    ,{" "}
+    <ActivityTerm label="Movies & Shows" descriptionHtml={ACTIVITIES.MEDIA.description} />
+    ,{" "}
+    <ActivityTerm label="Games" descriptionHtml={ACTIVITIES.GAMES.description} />
+    , and{" "}
+    <ActivityTerm label="Music" descriptionHtml={ACTIVITIES.MUSIC.description} />
+    .
+  </p>
 </section>

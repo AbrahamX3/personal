@@ -13,14 +13,14 @@ const { name, url, isPrivate = false } = Astro.props;
   rel="noopener noreferrer"
   href={url}
   data-tooltip-target="tooltip-default"
-  class="rounded-lg has-tooltip w-max border justify-center flex items-center align-middle gap-2 transition-colors duration-150 ease-in-out hover:bg-white/20 border-white/10 bg-white/10 text-white px-3 py-1.5 backdrop-blur-sm"
+  class="has-tooltip flex w-max items-center justify-center gap-2 rounded-md border border-zinc-700/80 bg-zinc-900/40 px-2.5 py-1 text-xs text-zinc-200 transition-colors hover:border-zinc-600 hover:bg-zinc-800/50"
 >
   <slot />
-  <p class="z-10">{name}</p>
+  <span class="z-10">{name}</span>
 
   <div
-    class="tooltip shadow-lg p-1 w-max border text-center backdrop-blur-sm border-white/30 bg-neutral-700/90 rounded-lg -mt-20"
+    class="tooltip -mt-16 w-max rounded-md border border-zinc-600/80 bg-zinc-900/95 p-1.5 text-center text-[10px] text-zinc-400 shadow-lg backdrop-blur-sm"
   >
-    {isPrivate ? "Private Project" : "Public Project"}
+    {isPrivate ? "Private project" : "Opens in new tab"}
   </div>
 </a>

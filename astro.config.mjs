@@ -9,9 +9,6 @@ export default defineConfig({
   adapter: vercel(),
   output: "server",
   vite: {
-    css: {
-      transformer: "lightningcss",
-    },
     plugins: [tailwindcss()],
   },
 });

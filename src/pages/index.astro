@@ -1,7 +1,7 @@
 ---
 import Introduction from "~/components/introduction.astro";
 import PageviewsCounter from "~/components/pageviews-counter.astro";
-import SkillsSection from "~/components/skills-section.astro";
+import ProjectsSection from "~/components/projects-section.astro";
 import SocialsSection from "~/components/socials-section.astro";
 import SpotifyCurrentlyPlaying from "~/components/spotify-currently-playing";
 import Layout from "~/layouts/Layout.astro";
@@ -9,22 +9,28 @@ import Layout from "~/layouts/Layout.astro";
 
 <Layout>
   <main
-    class="bg-linear-to-br from-gray-700 via-gray-900 to-black flex h-full min-h-screen w-full flex-col justify-center align-middle"
+    class="relative flex min-h-screen w-full flex-col bg-linear-to-br from-zinc-950 via-neutral-950 to-black"
   >
     <div
-      class="mx-auto z-10 my-auto flex w-full flex-col justify-center gap-y-5 p-4 align-middle"
+      class="relative z-10 mx-auto flex w-full max-w-2xl flex-1 flex-col justify-start gap-y-6 px-4 pt-8 pb-16 md:gap-y-8 md:pt-12 md:pb-20"
     >
       <Introduction />
       <SocialsSection />
-      <SkillsSection />
-      <SpotifyCurrentlyPlaying client:load />
-      <PageviewsCounter />
-    </div>
-    <div class="absolute z-0 rounded-md inset-0 overflow-hidden dark">
-      <div
-        class="rays absolute -inset-3 opacity-20 group-hover/lights:opacity-70"
-      >
+      <ProjectsSection />
+      <div class="flex flex-col items-center gap-y-4">
+        <p class="text-center text-[10px] font-medium uppercase tracking-widest text-zinc-600">
+          Now playing
+        </p>
+        <SpotifyCurrentlyPlaying client:load />
       </div>
+      <footer
+        class="mt-auto flex items-center justify-end border-t border-zinc-900/80 pt-6"
+      >
+        <PageviewsCounter />
+      </footer>
+    </div>
+    <div class="pointer-events-none absolute inset-0 z-0 overflow-hidden dark">
+      <div class="rays absolute -inset-3 opacity-[0.4]"></div>
     </div>
   </main>
 </Layout>

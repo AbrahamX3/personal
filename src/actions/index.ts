@@ -34,7 +34,7 @@ export const server = {
           success: true,
           views,
         };
-      } catch (error) {
+      } catch {
         return {
           success: false,
           error: "Failed to fetch pageviews",
