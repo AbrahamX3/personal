@@ -106,14 +106,14 @@ function NoTrackPlaying() {
 }
 
 export default function SpotifyCurrentlyPlaying() {
-  const { data, state } = useLanyard(DISCORD_USERID);
-  const spotify = data?.spotify ?? undefined;
+  const presence = useLanyard(DISCORD_USERID);
+  const spotify = presence?.spotify ?? undefined;
 
   return (
     <section className="mx-auto w-full max-w-sm pt-2" aria-label="Spotify status">
-      {state !== "loaded" ? (
+      {!presence ? (
         <LoadingSpotifyTrack />
-      ) : data?.listening_to_spotify ? (
+      ) : presence.listening_to_spotify ? (
         <SpotifyTrack spotify={spotify} />
       ) : (
         <NoTrackPlaying />

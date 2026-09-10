@@ -1,7 +1,6 @@
 import type { ImageMetadata } from "astro";
 
 import logoHivio from "~/assets/projects/hivio.png";
-import logoTermify from "~/assets/projects/termify.png";
 import logoTess from "~/assets/projects/tess-track.png";
 
 type TechnologyInfo = {
@@ -82,30 +81,6 @@ export interface Project {
 }
 
 export const PROJECTS: Project[] = [
-  {
-    name: "Termify",
-    logo: logoTermify,
-    private: false,
-    description:
-      "A local only application to organize your projects and seamlessly manage terminal processes—all with live resource monitoring, intuitive controls, and a clutter-free experience designed for productivity.",
-    url: {
-      repository: "https://github.com/AbrahamX3/termify",
-      website: "https://termify.abraham.lat",
-    },
-    technologies: [
-      Technology.TAILWINDCSS,
-      Technology.TYPESCRIPT,
-      Technology.VITE,
-      Technology.DRIZZLEORM,
-      Technology.SHADCNUI,
-      Technology.ZOD,
-      Technology.ZUSTAND,
-      Technology.ELECTRON,
-      Technology.SQLLITE,
-      Technology.MCP,
-      Technology.VERCEL,
-    ],
-  },
   {
     name: "Hivio",
     logo: logoHivio,
