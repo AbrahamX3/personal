@@ -1,5 +1,6 @@
 import type { ImageMetadata } from "astro";
 
+import logoFissol from "~/assets/projects/fissol.png";
 import logoHivio from "~/assets/projects/hivio.png";
 import logoTess from "~/assets/projects/tess-track.png";
 
@@ -64,6 +65,7 @@ export const Technology = {
     url: "https://modelcontextprotocol.io/docs/getting-started/intro",
   },
   MAPBOX: { name: "Mapbox", url: "https://www.mapbox.com/" },
+  MAPLIBRE: { name: "MapLibre", url: "https://maplibre.org/" },
 } as const satisfies Record<string, TechnologyInfo>;
 
 export type TechnologyEntry = (typeof Technology)[keyof typeof Technology];
@@ -100,6 +102,27 @@ export const PROJECTS: Project[] = [
       Technology.ZUSTAND,
       Technology.CONVEX,
       Technology.BETTERAUTH,
+      Technology.VERCEL,
+    ],
+  },
+  {
+    name: "Fissol",
+    logo: logoFissol,
+    private: false,
+    description:
+      "An arthquake visualizer that maps recent seismic activity worldwide. Browse live USGS feeds, filter by magnitude and time range, search and sort events, and see earthquakes near you on using an interactive map.",
+    url: {
+      repository: "https://github.com/AbrahamX3/fissol",
+      website: "https://fissol.abraham.lat/",
+    },
+    technologies: [
+      Technology.TYPESCRIPT,
+      Technology.NEXTJS,
+      Technology.REACTQUERY,
+      Technology.ZOD,
+      Technology.TAILWINDCSS,
+      Technology.SHADCNUI,
+      Technology.MAPLIBRE,
       Technology.VERCEL,
     ],
   },
@@ -145,7 +168,7 @@ export const ACTIVITIES = {
   },
   MUSIC: {
     description:
-      "I listen to any type of music, Check out my <a href='https://www.last.fm/user/cmelvard' target='_blank' rel='noopener noreferrer'>Last.fm</a> and <a href='https://open.spotify.com/user/reaker911x' target='_blank' rel='noopener noreferrer'>Spotify</a>!",
+      "I listen to many genres, Check out my <a href='https://www.last.fm/user/cmelvard' target='_blank' rel='noopener noreferrer'>Last.fm</a> and <a href='https://open.spotify.com/user/reaker911x' target='_blank' rel='noopener noreferrer'>Spotify</a>!",
   },
   COFFEE: {
     description:

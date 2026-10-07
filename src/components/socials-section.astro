@@ -3,46 +3,39 @@ import Discord from "~/icons/discord-icon.astro";
 import GitHub from "~/icons/github-icon.astro";
 import X from "~/icons/x-icon.astro";
 
-const SOCIAL_ICONS: Record<string, any> = {
-  GitHub,
-  Discord,
-  X,
-};
-
 const SOCIALS = [
   {
     network: "GitHub",
     url: "https://github.com/AbrahamX3",
+    icon: GitHub,
   },
   {
     network: "Discord",
     url: "https://discord.com/users/247971007409684480",
+    icon: Discord,
   },
   {
     network: "X",
     url: "https://x.com/x3_abe",
+    icon: X,
   },
 ];
 ---
 
 <section class="flex items-center justify-center gap-2">
   {
-    SOCIALS.map(({ network, url }) => {
-      const SocialIcon = SOCIAL_ICONS[network];
-
-      return (
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href={url}
-          aria-label={network}
-          class="flex items-center rounded-md border border-zinc-800/90 bg-zinc-900/30 p-2 text-zinc-300 transition-colors hover:border-zinc-700 hover:bg-zinc-800/40 hover:text-zinc-100"
-        >
-          <span class="z-10">
-            <SocialIcon />
-          </span>
-        </a>
-      );
-    })
+    SOCIALS.map(({ network, url, icon: Icon }) => (
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href={url}
+        aria-label={network}
+        class="flex items-center rounded-md border border-zinc-800/90 bg-zinc-900/30 p-2 text-zinc-300 transition-colors hover:border-zinc-700 hover:bg-zinc-800/40 hover:text-zinc-100"
+      >
+        <span class="z-10">
+          <Icon />
+        </span>
+      </a>
+    ))
   }
 </section>

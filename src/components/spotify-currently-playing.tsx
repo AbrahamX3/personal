@@ -1,5 +1,6 @@
 import { type Types, useLanyard } from "use-lanyard";
 
+// SAFETY: PUBLIC_DISCORD_USER_ID is a Discord snowflake ID validated by use-lanyard's `${bigint}` contract.
 const DISCORD_USERID = import.meta.env.PUBLIC_DISCORD_USER_ID as `${bigint}`;
 
 const rowClass =
